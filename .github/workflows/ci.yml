@@ -18,8 +18,8 @@ jobs:
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '20'
+          cache: 'npm'
 
       - name: 📦 Install dependencies
         run: npm ci
@@ -29,10 +29,10 @@ jobs:
 
       - name: ✅ Verify build output exists
         run: |
-          if [ -d "build" ]; then
-            echo "Build folder exists ✅"
-            ls -la build/
+          if [ -d "dist" ]; then
+            echo "Build folder (dist) exists ✅"
+            ls -la dist/
           else
-            echo "Build folder NOT found ❌"
+            echo "Build folder (dist) NOT found ❌"
             exit 1
           fi
