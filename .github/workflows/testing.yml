@@ -8,36 +8,27 @@ on:
 
 jobs:
   test:
-    name: Run Tests & Coverage
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Run unit tests with coverage
+      - name: 🧪 Run tests with coverage
         run: npm run test:ci
 
-      - name: Upload coverage report
+      - name: 📤 Upload coverage report
         uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: coverage-report
+          name: artifactcoverage
           path: coverage/
-          retention-days: 7
-
-      - name: Display coverage summary
-        run: |
-          if [ -f "coverage/coverage-summary.json" ]; then
-            echo "=== COVERAGE SUMMARY ==="
-            cat coverage/coverage-summary.json
-          fi
